@@ -2,9 +2,9 @@ import asyncio
 import re
 from telethon import TelegramClient, events
 
-api_id = YOUR_API_ID
-api_hash = 'YOUR_API_HASH'
-bot_token = 'YOUR_BOT_TOKEN'
+api_id = 22972066
+api_hash = '8bec75c9c484b1ca177e722523efd9d9'
+bot_token = '7792512773:AAHClF1i3eUlZczvzmFM5j67gPdb8AplhOA'
 
 source_channels = [
     'getjet_european_el',
