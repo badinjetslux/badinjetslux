@@ -2,12 +2,12 @@ def format_message(original_text, source):
     import re
 
     lines = original_text.strip().split('\n')
-    date = ''
-    aircraft = ''
-    seats = ''
-    price = ''
-    departure = ''
-    arrival = ''
+    date = 'N/A'
+    aircraft = 'N/A'
+    seats = 'N/A'
+    price = 'N/A'
+    departure = 'N/A'
+    arrival = 'N/A'
     flags = ['🇮🇹', '🇫🇷', '🇪🇸', '🇩🇪', '🇬🇧', '🇺🇸', '🇬🇷', '🇨🇭', '🇳🇱', '🇵🇹', '🇦🇹']
 
     headers = {
@@ -34,11 +34,11 @@ def format_message(original_text, source):
                     val = float(match.group(1).replace(',', '').replace('€', '').strip())
                     price = f"{round(val * 1.05):,}".replace(",", ".")
                 except:
-                    price = ''
+                    price = 'N/A'
         elif any(f in line for f in flags):
-            if not departure:
+            if departure == 'N/A':
                 departure = line
-            elif not arrival:
+            elif arrival == 'N/A':
                 arrival = line
 
     return f"""{header}
