@@ -6,8 +6,8 @@ def format_message(original_text, source):
     aircraft = 'N/A'
     seats = 'N/A'
     price = 'N/A'
-    departure = 'N/A'
-    arrival = 'N/A'
+    departure = ''
+    arrival = ''
     flags = ['🇮🇹', '🇫🇷', '🇪🇸', '🇩🇪', '🇬🇧', '🇺🇸', '🇬🇷', '🇨🇭', '🇳🇱', '🇵🇹', '🇦🇹']
 
     headers = {
@@ -20,26 +20,26 @@ def format_message(original_text, source):
     header = headers.get(source, '✈️ BADINJETSLUX.COM')
 
     for line in lines:
-        line = line.strip()
-        if line.lower().startswith("date:"):
-            date = line.split(":", 1)[1].strip()
-        elif line.lower().startswith("aircraft:"):
-            aircraft = line.split(":", 1)[1].strip()
-        elif line.lower().startswith("seats:"):
-            seats = line.split(":", 1)[1].strip()
-        elif line.lower().startswith("price:"):
-            match = re.search(r'([0-9]+[.,]?[0-9]*)', line)
+        clean_line = line.strip()
+        if clean_line.lower().startswith("date"):
+            date = clean_line.split(":", 1)[-1].strip()
+        elif clean_line.lower().startswith("aircraft"):
+            aircraft = clean_line.split(":", 1)[-1].strip()
+        elif clean_line.lower().startswith("seats"):
+            seats = clean_line.split(":", 1)[-1].strip()
+        elif clean_line.lower().startswith("price"):
+            match = re.search(r'([0-9]+[.,]?[0-9]*)', clean_line)
             if match:
                 try:
                     val = float(match.group(1).replace(',', '').replace('€', '').strip())
                     price = f"{round(val * 1.05):,}".replace(",", ".")
                 except:
                     price = 'N/A'
-        elif any(f in line for f in flags):
-            if departure == 'N/A':
-                departure = line
-            elif arrival == 'N/A':
-                arrival = line
+        elif any(f in clean_line for f in flags):
+            if not departure:
+                departure = clean_line
+            elif not arrival:
+                arrival = clean_line
 
     return f"""{header}
 📍 Route: {departure} → {arrival}
