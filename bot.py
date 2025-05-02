@@ -1,6 +1,24 @@
-def format_message(original_text, source):
-    import re
+import asyncio
+import re
+from telethon import TelegramClient, events
 
+# --- CREDENZIALI ---
+api_id = 22972066
+api_hash = '8bec75c9c484b1ca177e722523efd9d9'
+bot_token = '7792512773:AAHClF1i3eUlZczvzmFM5j67gPdb8AplhOA'
+
+source_channels = [
+    'getjet_european_el',
+    'getjet_transatlantic_el',
+    'getjet_me_el',
+    'getjet_cis_el'
+]
+destination_channel = 'badinjetslux'
+
+client = TelegramClient('badinjet_session', api_id, api_hash).start(bot_token=bot_token)
+
+# --- FORMATTAZIONE MESSAGGIO ---
+def format_message(original_text, source):
     lines = original_text.strip().split('\n')
     date = 'N/A'
     aircraft = 'N/A'
@@ -80,3 +98,18 @@ def format_message(original_text, source):
 📸 Follow us on Instagram: https://instagram.com/badinjetslux
 🌐 www.badinjetslux.com
 """
+
+# --- EVENTO ---
+@client.on(events.NewMessage(chats=source_channels))
+async def handler(event):
+    message = event.message
+    content = message.text or (message.media and message.message)
+
+    if content:
+        print("DEBUG: Ricevuto messaggio")
+        formatted = format_message(content, event.chat.username)
+        await client.send_message(destination_channel, formatted, file=message.media)
+        print("DEBUG: Inviato sul canale")
+
+print("Bot is running...")
+client.run_until_disconnected()
