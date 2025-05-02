@@ -28,7 +28,7 @@ def format_message(original_text, source):
             if date_match:
                 date = date_match.group(1)
 
-        # Estrai Aircraft (elimina eventuali simboli extra)
+        # Estrai Aircraft
         if "Aircraft:" in clean:
             aircraft_match = re.search(r'Aircraft:\s*\**\s*(.+)', clean)
             if aircraft_match:
@@ -40,7 +40,7 @@ def format_message(original_text, source):
             if seats_match:
                 seats = seats_match.group(1)
 
-        # Estrai Prezzo e incrementa del 5%
+        # Estrai Prezzo +5%
         if "Price:" in clean:
             price_match = re.search(r'([0-9]+[.,]?[0-9]*)', clean.replace(',', '').replace('€', ''))
             if price_match:
@@ -51,7 +51,7 @@ def format_message(original_text, source):
                 except:
                     price = 'N/A'
 
-        # Estrai partenza e arrivo
+        # Estrai Partenza e Arrivo
         if any(flag in clean for flag in flags):
             if not departure:
                 departure = clean
