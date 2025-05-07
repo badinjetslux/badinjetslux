@@ -103,7 +103,7 @@ def format_message(original_text, source):
 🗓️ Date: {date}
 ✈️ Aircraft: {aircraft}
 👥 Seats: {seats}
-💶 Price: € {price}
+💶 Price: estimated € {price}
 📩 Info: info@badinjetslux.com
 📲 Book now: booking@badinjetslux.com
 💺 EMPTY LEG AVAILABLE
