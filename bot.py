@@ -83,7 +83,7 @@ def format_message(original_text, source):
             if match:
                 try:
                     val = float(match.group(1))
-                    new_val = round(val * 1.05)
+                    new_val = round(val * 1.10)
                     price = f"{new_val:,}".replace(",", ".")
                     print(f"DEBUG: Prezzo originale {val}, con incremento = {price}")
                 except Exception as e:
@@ -103,7 +103,8 @@ def format_message(original_text, source):
 🗓️ Date: {date}
 ✈️ Aircraft: {aircraft}
 👥 Seats: {seats}
-💶 Price: estimated € {price}
+💶 Price: estimated total jet € {price}
+👤 YOU CAN BUY YOUR SINGLE SEAT
 📩 Info: info@badinjetslux.com
 📲 Book now: booking@badinjetslux.com
 💺 EMPTY LEG AVAILABLE
