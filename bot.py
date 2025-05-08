@@ -52,7 +52,7 @@ def format_message(original_text, source):
         'getjet_european_el': '🇪🇺✈️ EUROPE BADINJETSLUX.COM',
         'getjet_transatlantic_el': '🌍✈️ TRANSATLANTIC BADINJETSLUX.COM',
         'getjet_me_el': '🌴🌟 MIDDLE EAST BADINJETSLUX.COM',
-        'getjet_cis_el': '🇺🇳🛫 CIS REGION BADINJETSLUX.COM'}
+        'getjet_cis_el': '🇰🇿🛫 CIS REGION BADINJETSLUX.COM'}
     
 
     header = headers.get(source, '✈️ BADINJETSLUX.COM')
