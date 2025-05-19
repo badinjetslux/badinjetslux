@@ -55,7 +55,7 @@ def format_message(original_text, source):
         'getjet_cis_el': '🇰🇿🛫 CIS REGION BADINJETSLUX.COM'}
     
 
-    header = headers.get(source, '✈️ BADINJETSLUX.COM')
+    header = headers.get(source, '✈️ BADINJETLUX.COM')
 
     for line in lines:
         clean = line.strip()
@@ -109,7 +109,7 @@ def format_message(original_text, source):
 📲 Book now: booking@badinjetslux.com
 💺 EMPTY LEG AVAILABLE
 📸 Follow us on Instagram: https://instagram.com/badinjetslux
-🌐 www.badinjetslux.com
+🌐 www.badinjetlux.com
 """
     print("DEBUG: Messaggio formattato completato.")
     return formatted
